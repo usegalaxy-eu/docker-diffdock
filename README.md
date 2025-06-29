@@ -11,3 +11,5 @@ You can start the container outside of Galaxy with:
 docker run -i -t --rm -v /path/to/:/opt/ quay.io/galaxy/diffdock:<verion> bash
 ```
 
+You can add  `--user 5000 --group-add users`  to launch the container with a specific user ID and adds that user to the `users` group so that it can modify files in the default home directory and /home/appuser.
+
