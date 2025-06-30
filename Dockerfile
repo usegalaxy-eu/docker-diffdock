@@ -6,13 +6,19 @@ FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
 ENV APPUSER="appuser"
 ENV HOME=/home/$APPUSER
 
-COPY --from=builder --chown=$APPUSER:users $HOME/ $HOME/
+ENV ENV_NAME="diffdock"
+ENV DIR_NAME="DiffDock"
 
+RUN useradd -m -u 1000 $APPUSER
+USER $APPUSER
+WORKDIR $HOME
 
+COPY --from=builder --chown=$APPUSER:users --chmod=555 $HOME/ $HOME/
 
 USER $APPUSER
 
-WORKDIR $HOME/
+# Set the environment variables
+ENV PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # Expose ports for streamlit and gradio
 EXPOSE 7860 8501
