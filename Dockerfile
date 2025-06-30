@@ -13,12 +13,14 @@ RUN useradd -m -u 1000 $APPUSER
 USER $APPUSER
 WORKDIR $HOME
 
-COPY --from=builder --chown=$APPUSER:users --chmod=555 $HOME/ $HOME/
+COPY --from=builder --chown=$APPUSER:users --chmod=775 $HOME/ $HOME/
 
 USER $APPUSER
 
 # Set the environment variables
 ENV PATH=$HOME/bin:$HOME/.local/bin:$PATH
+ENV MAMBA_ROOT_PREFIX=/home/appuser/micromamba
+RUN micromamba shell init -s bash --root-prefix $MAMBA_ROOT_PREFIX
 
 # Expose ports for streamlit and gradio
 EXPOSE 7860 8501
