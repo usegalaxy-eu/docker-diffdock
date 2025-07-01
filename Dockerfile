@@ -13,7 +13,7 @@ RUN useradd -m -u 1000 $APPUSER
 USER $APPUSER
 WORKDIR $HOME
 
-COPY --from=builder --chown=$APPUSER:users --chmod=775 $HOME/ $HOME/
+COPY --from=builder --chown=$APPUSER:users --chmod=776 $HOME $HOME
 
 USER $APPUSER
 
