@@ -13,8 +13,8 @@ RUN useradd -m -u 1000 $APPUSER
 USER $APPUSER
 WORKDIR $HOME
 
-COPY --from=builder --chown=$APPUSER:users --chmod=776 $HOME $HOME
-
+COPY --from=builder --chown=$APPUSER:users --chmod=777 $HOME $HOME
+RUN chmod 777 /home/$APPUSER
 USER $APPUSER
 
 # Set the environment variables
