@@ -9,7 +9,7 @@ ENV HOME=/home/$APPUSER
 ENV ENV_NAME="diffdock"
 ENV DIR_NAME="DiffDock"
 
-RUN useradd -m -u 1000 $APPUSER
+RUN useradd -m -u 1001 $APPUSER
 USER $APPUSER
 WORKDIR $HOME
 
